@@ -1,0 +1,30 @@
+#######################################
+# Syntax Coloring Map for Dagu4Motor
+# by William Garrido
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Dagu4Motor	KEYWORD1
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setMotorDirection	KEYWORD2
+setSpeed		KEYWORD2
+stopMotors		KEYWORD2
+getCurrent		KEYWORD2
+getDistance		KEYWORD2
+getSpeed		KEYWORD2
+
+
+
+
+ENCODER_USE_INTERRUPTS	LITERAL1
+ENCODER_OPTIMIZE_INTERRUPTS	LITERAL1
+ENCODER_DO_NOT_USE_INTERRUPTS	LITERAL1
+Encoder	KEYWORD1
