@@ -40,6 +40,7 @@ public:
 	float getDistance();
 	int getSpeed();
 	long int getTicks();
+	void resetTicks();
 
 	
 	
