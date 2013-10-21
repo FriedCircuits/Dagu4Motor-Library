@@ -94,4 +94,15 @@ long int Dagu4Motor::getTicks()
 
 return _ticks;
 }
+
+void Dagu4Motor::resetTicks()
+{
+
+	enc.write(0);
+}
+
+
+
+
+
 	
