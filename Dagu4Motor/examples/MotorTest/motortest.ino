@@ -8,8 +8,6 @@ https://github.com/hbrobotics/ros_arduino_bridge
 
 */
 
-
-
 #include <Dagu4Motor.h>
 
 //Serial input
@@ -21,6 +19,14 @@ char cmd;
 
 //Character arrays to hold the first argument
 char argv1[16];
+
+// A pair of varibles to help parse serial commands (thanks Fergs)
+int arg = 0;
+int index_ = 0;
+
+// The arguments converted to integers
+long arg1;
+
 
 
 //Motors
@@ -129,6 +135,52 @@ void mStop()
 	motor4.stopMotors();
 }
 
+void runCommand(){
+  
+     arg1 = atoi(argv1);
+   
+    switch (cmd){
+    
+      case 'f':
+            Serial.print("Forward: ");  
+            Serial.println(arg1);   
+            mForward(arg1);
+      break;
+      
+      case 'l':
+          Serial.print("Left: "); 
+          Serial.println(arg1);  
+          mLeft(arg1); 
+      break;
+      
+      case 'r':
+         Serial.print("Right: ");
+         Serial.println(arg1);
+         mRight(arg1);     
+      break;
+      
+      case 'b':
+        Serial.print("Reverse: "); 
+        Serial.println(arg1); 
+        mReverse(arg1);      
+      break;
+      
+      case 's':
+        mStop();
+        Serial.println("Stopped");
+      break;
+  }
+  
+  cmd = NULL;
+  memset(argv1, 0, sizeof(argv1));
+  arg = 0;
+  arg1 = 0;
+  index_ = 0;
+
+
+
+}
+
 void setup(){
 
   Serial.begin(115200);
@@ -148,7 +200,7 @@ void loop(){
     // Terminate a command with a CR
     if (chr == 13) {
       if (arg == 1) argv1[index_] = NULL;
-
+      runCommand();
     }
     // Use spaces to delimit parts of the command
     else if (chr == ' ') {
@@ -175,45 +227,6 @@ void loop(){
     }
   }
   
- 
-    swtich (cmd){
-    
-      case 'f':
-      
-      
-      
-      break;
-      
-      case 'l':
-      
-      
-      break;
-      
-      case 'r':
-      
-      
-      
-      break;
-      
-      case 'b':
-        
-      break;
-      
-      
-      case 's':
-        mStop();
-      break;
-  
-  }
-  
-  cmd = NULL;
-  memset(argv1, 0, sizeof(argv1));
-  arg1 = 0;
-  arg = 0;
-  index_ = 0;
-
-
-
 
 }
 
