@@ -27,7 +27,9 @@ int index_ = 0;
 // The arguments converted to integers
 long arg1;
 
+bool boolMove = false;
 
+unsigned time = millis();
 
 //Motors
 const int pwm_a = 4;  //PWM for CH1 LF
@@ -73,9 +75,10 @@ void mReverse(int speed)
 	motor3.setMotorDirection(true);
 	motor4.setMotorDirection(false);
 	motor1.setSpeed(speed);
-  motor2.setSpeed(speed);
-  motor3.setSpeed(speed);
-  motor4.setSpeed(speed);
+        motor2.setSpeed(speed);
+        motor3.setSpeed(speed);
+        motor4.setSpeed(speed);
+        boolMove = true;
 
 }
 
@@ -88,9 +91,10 @@ void mForward(int speed)
 	motor3.setMotorDirection(false);
 	motor4.setMotorDirection(true);
 	motor1.setSpeed(speed);
-  motor2.setSpeed(speed);
-  motor3.setSpeed(speed);
-  motor4.setSpeed(speed);
+        motor2.setSpeed(speed);
+        motor3.setSpeed(speed);
+        motor4.setSpeed(speed);
+        boolMove = true;    
 
 }
 
@@ -102,9 +106,10 @@ void mRight(int speed)
 	motor3.setMotorDirection(false);
 	motor4.setMotorDirection(true);
 	motor1.setSpeed(speed);
-  motor2.setSpeed(speed);
-  motor3.setSpeed(speed);
-  motor4.setSpeed(speed);
+        motor2.setSpeed(speed);
+        motor3.setSpeed(speed);
+        motor4.setSpeed(speed);
+        boolMove = true;
 
 
 }
@@ -118,9 +123,10 @@ void mLeft(int speed)
 	motor3.setMotorDirection(true);
 	motor4.setMotorDirection(false);
 	motor1.setSpeed(speed);
-  motor2.setSpeed(speed);
-  motor3.setSpeed(speed);
-  motor4.setSpeed(speed);
+        motor2.setSpeed(speed);
+        motor3.setSpeed(speed);
+        motor4.setSpeed(speed);
+        boolMove = true;
 
 }
 
@@ -133,6 +139,7 @@ void mStop()
 	motor2.stopMotors();
 	motor3.stopMotors();
 	motor4.stopMotors();
+        boolMove = false;
 }
 
 void runCommand(){
@@ -191,6 +198,8 @@ void setup(){
 
 
 void loop(){
+  
+  
 
   while (Serial.available() > 0) {
     
@@ -225,6 +234,29 @@ void loop(){
       }
       
     }
+  }
+   
+ 
+  if (boolMove){
+  
+    if(millis() > (time+1000)){
+    
+      Serial.print("M1-Current: ");
+      Serial.println(motor1.getCurrent());
+      
+      Serial.print("M2-Current: ");
+      Serial.println(motor2.getCurrent());
+      
+      Serial.print("M3-Current: ");
+      Serial.println(motor3.getCurrent());
+      
+      Serial.print("M4-Current: ");
+      Serial.println(motor4.getCurrent());
+      
+      time=millis();
+    
+    }
+  
   }
   
 
