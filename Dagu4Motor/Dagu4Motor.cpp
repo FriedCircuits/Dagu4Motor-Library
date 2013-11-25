@@ -10,15 +10,12 @@ Created on: 02/03/2012
 #include "Dagu4Motor.h"
 
 
-Dagu4Motor::Dagu4Motor(int pwmPin, int dirPin, int currPin, int encAPin, int encBPin) //: enc(encAPin, encBPin)
+Dagu4Motor::Dagu4Motor(int pwmPin, int dirPin, int currPin)
 {  
     _pwm = pwmPin;  
     _dir = dirPin;  
     _curr = currPin;
     _currRate = 0;
-    _encA = encAPin;
-    _encB = encBPin;
-    //_distance = 0;
     _speed = 0;	
 	
 }
@@ -26,7 +23,6 @@ Dagu4Motor::Dagu4Motor(int pwmPin, int dirPin, int currPin, int encAPin, int enc
 void Dagu4Motor::begin()
 {
 
-	
     pinMode(_pwm, OUTPUT);  
     pinMode(_dir, OUTPUT); 
     pinMode(_curr, INPUT);
@@ -71,16 +67,6 @@ int Dagu4Motor::getCurrent()
 return _currRate;
 }
 
-float Dagu4Motor::getDistance()
-{
-	
-     //	_distance = enc.read();
-     //	_distance = (((_distance/333.33)*7.8)/12);
-
-     return _distance;
-}
-
-
 int Dagu4Motor::getSpeed()
 {
 
@@ -88,19 +74,6 @@ int Dagu4Motor::getSpeed()
      return _speed;
 }
 
-long int Dagu4Motor::getTicks()
-{
-
-     //	_ticks = enc.read();
-
-     return _ticks;
-}
-
-void Dagu4Motor::resetTicks()
-{
-
-	//enc.write(0);
-}
 
 
 
