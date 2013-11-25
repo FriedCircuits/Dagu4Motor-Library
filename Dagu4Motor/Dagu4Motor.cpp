@@ -9,7 +9,7 @@ Created on: 02/03/2012
 #include "Dagu4Motor.h"
 
 
-Dagu4Motor::Dagu4Motor(int pwmPin, int dirPin, int currPin, int encAPin, int encBPin) : enc(encAPin, encBPin)
+Dagu4Motor::Dagu4Motor(int pwmPin, int dirPin, int currPin, int encAPin, int encBPin) //: enc(encAPin, encBPin)
 {  
 	_pwm = pwmPin;  
     _dir = dirPin;  
@@ -73,8 +73,8 @@ return _currRate;
 float Dagu4Motor::getDistance()
 {
 	
-	_distance = enc.read();
-	_distance = (((_distance/333.33)*7.8)/12);
+//	_distance = enc.read();
+//	_distance = (((_distance/333.33)*7.8)/12);
 
 return _distance;
 }
@@ -90,7 +90,7 @@ return _speed;
 long int Dagu4Motor::getTicks()
 {
 
-	_ticks = enc.read();
+//	_ticks = enc.read();
 
 return _ticks;
 }
@@ -98,7 +98,7 @@ return _ticks;
 void Dagu4Motor::resetTicks()
 {
 
-	enc.write(0);
+	//enc.write(0);
 }
 
 
